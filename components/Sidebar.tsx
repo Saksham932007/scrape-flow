@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import {
   CoinsIcon,
@@ -7,13 +7,12 @@ import {
   HomeIcon,
   Layers2Icon,
   MenuIcon,
-  Sheet,
   ShieldCheckIcon,
 } from "lucide-react";
 import Logo from "./Logo";
 import { Button, buttonVariants } from "./ui/button";
 import { usePathname } from "next/navigation";
-import { SheetContent, SheetTrigger } from "./ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 const routes = [
   {
@@ -72,6 +71,7 @@ function DesktopSidebar() {
 }
 
 export function MobileSidebar() {
+  const [isOpen, setOpen] = useState(false);
   const pathname = usePathname();
   const activeRoute =
     routes.find(
@@ -102,7 +102,7 @@ export function MobileSidebar() {
                         ? "sidebarActiveItem"
                         : "sidebarItem",
                   })}
-                  onClick={() => setOpen((prev) => !prev)}
+                  onClick={() => setOpen(false)}
                 >
                   <route.icon size={20} />
                   {route.label}
